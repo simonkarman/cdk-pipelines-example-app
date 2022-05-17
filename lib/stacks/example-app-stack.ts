@@ -11,6 +11,6 @@ export class ExampleAppStack extends Stack {
 
     new sqs.Queue(this, 'Queue', {
       queueName: `${props.environmentName}-example-app-queue`,
-    })
+    });
   }
 }

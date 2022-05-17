@@ -1,6 +1,6 @@
-import {pipelines, Stack, StackProps, Stage} from 'aws-cdk-lib';
+import { pipelines, Stack, StackProps, Stage } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import {ExampleAppStack} from './stacks/example-app-stack';
+import { ExampleAppStack } from './stacks/example-app-stack';
 
 interface ExampleAppStageProps {
   readonly environmentName: string;
