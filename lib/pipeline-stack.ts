@@ -15,15 +15,18 @@ class ExampleAppStage extends Stage {
       environmentName: props.environmentName,
     });
   }
-
 }
 
 export class PipelineStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
+    const connectionArn = 'arn:aws:codestar-connections:us-east-1:343891447419:connection/13b873ac-16ea-4424-b450-4115b259a289';
     const pipeline = new pipelines.CodePipeline(this, 'Pipeline', {
-      synth: new pipelines.ShellStep('Synth', { commands: ['npm ci', 'npx cdk synth'] })
+      synth: new pipelines.ShellStep('Synth', {
+        commands: ['npm ci', 'npx cdk synth'],
+        input: pipelines.CodePipelineSource.connection('cdk-pipelines-example-app',  'main', { connectionArn }),
+      }),
     })
 
     pipeline.addStage(new ExampleAppStage(this, 'Development', {
