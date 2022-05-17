@@ -25,7 +25,7 @@ export class PipelineStack extends Stack {
     const pipeline = new pipelines.CodePipeline(this, 'Pipeline', {
       synth: new pipelines.ShellStep('Synth', {
         commands: ['npm ci', 'npx cdk synth'],
-        input: pipelines.CodePipelineSource.connection('cdk-pipelines-example-app',  'main', { connectionArn }),
+        input: pipelines.CodePipelineSource.connection('simonkarman/cdk-pipelines-example-app',  'main', { connectionArn }),
       }),
     })
 
