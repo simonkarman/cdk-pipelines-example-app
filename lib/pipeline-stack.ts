@@ -27,10 +27,14 @@ export class PipelineStack extends Stack {
         commands: ['npm ci', 'npx cdk synth'],
         input: pipelines.CodePipelineSource.connection('simonkarman/cdk-pipelines-example-app',  'main', { connectionArn }),
       }),
-    })
+    });
 
     pipeline.addStage(new ExampleAppStage(this, 'Development', {
       environmentName: 'dev',
+    }));
+
+    pipeline.addStage(new ExampleAppStage(this, 'Staging', {
+      environmentName: 'stg',
     }));
 
     pipeline.addStage(new ExampleAppStage(this, 'Production', {
